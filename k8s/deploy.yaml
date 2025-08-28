@@ -1,0 +1,22 @@
+apiVersion: v1/app
+kind: Deployment
+metadata:
+  name: k8s-CI_CD-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: k8s-CI_CD-app
+  template:
+    metadata:
+      labels:
+        app: k8s-CI_CD-app
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "3000"  
+    spec:
+      containers:
+        - name: k8s-CI_CD-app
+          image: mohamedelaassal/k8s-CI_CD-app:latest
+          ports:
+            - containerPort: 3000
