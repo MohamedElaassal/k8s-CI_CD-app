@@ -1,0 +1,23 @@
+{
+  "name": "k8s-ci_cd-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MohamedElaassal/k8s-CI_CD-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MohamedElaassal/k8s-CI_CD-app/issues"
+  },
+  "homepage": "https://github.com/MohamedElaassal/k8s-CI_CD-app#readme",
+  "description": "",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
