@@ -3,7 +3,7 @@ pipeline {
     
     environment {
         DOCKER_IMAGE = "mohamedelaassal/lzz_repo"
-        KUBECONFIG_CREDENTIALS = credentials('config')
+        KUBECONFIG_CREDENTIALS = credentials('kubeconfig')
         SONARQUBE_TOKEN = credentials('sonarqube-token')
     }
     
@@ -47,8 +47,8 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 script {
-                    docker.withRegistry('https://registry.hub.docker.com', "${DOCKER_HUB_CREDENTIALS_ID}") {
-                        docker.image(DOCKER_IMAGE).push('latest')
+                    docker.withRegistry('https://registry.hub.docker.com', 'jen-dockerhub') {
+                        docker.image("${DOCKER_IMAGE}:latest").push('latest')
                     }
                 }
             }
@@ -57,7 +57,7 @@ pipeline {
         stage('Deploy to Kubernetes') {
             steps {
                 script {
-                    withKubeConfig(credentialsId: 'config') {
+                    withKubeConfig(credentialsId: 'kubeconfig') {
                         sh 'kubectl apply -f k8s/deployment.yaml'
                         sh 'kubectl apply -f k8s/service.yaml'
                     }
