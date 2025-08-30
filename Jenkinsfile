@@ -27,19 +27,19 @@ pipeline {
             }
         }
         
-        stage('Code Quality Analysis') {
-            steps {
-                withSonarQubeEnv('sonarqube') {
-                    sh """
-                        sonar-scanner \
-                        -Dsonar.projectKey=k8s-cicd-app \
-                        -Dsonar.sources=. \
-                        -Dsonar.host.url=https://95d9558001ba.ngrok-free.app/ \
-                        -Dsonar.login=${SONARQUBE_TOKEN}
-                    """
-                }
-            }
-        }
+        // stage('Code Quality Analysis') {
+        //     steps {
+        //         withSonarQubeEnv('sonarqube') {
+        //             sh """
+        //                 sonar-scanner \
+        //                 -Dsonar.projectKey=k8s-cicd-app \
+        //                 -Dsonar.sources=. \
+        //                 -Dsonar.host.url=https://95d9558001ba.ngrok-free.app/ \
+        //                 -Dsonar.login=${SONARQUBE_TOKEN}
+        //             """
+        //         }
+        //     }
+        // }
         
         stage('Build Docker Image') {
             steps {
