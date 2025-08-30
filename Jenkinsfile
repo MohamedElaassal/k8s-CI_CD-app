@@ -2,8 +2,8 @@ pipeline {
     agent any
     
     tools {
-        nodejs 'NodeJS'
-        'org.sonarsource.scanner.cli.SonarScanner' 'Sonar'
+        nodejs 'NodeJs'
+        'hudson.plugins.sonar.SonarRunnerInstallation' 'Sonar'
     }
     
     environment {
