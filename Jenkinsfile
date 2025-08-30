@@ -3,7 +3,7 @@ pipeline {
     
     environment {
         DOCKER_IMAGE = "mohamedelaassal/lzz_repo"
-        KUBECONFIG_CREDENTIALS = credentials('kubeconfig-id')
+        KUBECONFIG_CREDENTIALS = credentials('config')
         SONARQUBE_TOKEN = credentials('sonarqube-token')
     }
     
@@ -57,7 +57,7 @@ pipeline {
         stage('Deploy to Kubernetes') {
             steps {
                 script {
-                    withKubeConfig(credentialsId: 'kubeconfig-id') {
+                    withKubeConfig(credentialsId: 'config') {
                         sh 'kubectl apply -f k8s/deployment.yaml'
                         sh 'kubectl apply -f k8s/service.yaml'
                     }
