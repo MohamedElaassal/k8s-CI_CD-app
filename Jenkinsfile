@@ -16,6 +16,12 @@ pipeline {
         }
         
         stage('Run Unit Tests') {
+            agent {
+                docker {
+                    image 'node:18-alpine'
+                    reuseNode true
+                }
+            }
             steps {
                 sh 'npm install'
                 sh 'npm test'
@@ -23,6 +29,12 @@ pipeline {
         }
         
         stage('Code Quality Analysis') {
+            agent {
+                docker {
+                    image 'sonarsource/sonar-scanner-cli:latest'
+                    reuseNode true
+                }
+            }
             steps {
                 withSonarQubeEnv('SonarQube') {
                     sh """
