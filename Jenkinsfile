@@ -16,29 +16,32 @@ pipeline {
         }
         
         stage('Run Unit Tests') {
-            agent {
-                docker {
-                    image 'node:18-alpine'
-                    reuseNode true
-                }
-            }
             steps {
-                sh 'npm install'
-                sh 'npm test'
+                sh '''
+                    # Install Node.js using NodeSource repository
+                    curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
+                    apt-get install -y nodejs
+                    
+                    # Run npm commands
+                    npm install
+                    npm test
+                '''
             }
         }
         
         stage('Code Quality Analysis') {
-            agent {
-                docker {
-                    image 'sonarsource/sonar-scanner-cli:latest'
-                    reuseNode true
-                }
-            }
             steps {
+                sh '''
+                    # Install SonarQube Scanner
+                    wget -O sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.8.0.2856-linux.zip
+                    unzip -o sonar-scanner.zip
+                    mv sonar-scanner-4.8.0.2856-linux sonar-scanner
+                    export PATH=$PATH:$(pwd)/sonar-scanner/bin
+                '''
+                
                 withSonarQubeEnv('SonarQube') {
                     sh """
-                        sonar-scanner \
+                        ./sonar-scanner/bin/sonar-scanner \
                         -Dsonar.projectKey=k8s-cicd-app \
                         -Dsonar.sources=. \
                         -Dsonar.host.url=https://95d9558001ba.ngrok-free.app/ \
