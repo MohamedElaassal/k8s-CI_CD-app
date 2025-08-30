@@ -29,7 +29,7 @@ pipeline {
         
         stage('Code Quality Analysis') {
             steps {
-                withSonarQubeEnv('SonarQube') {
+                withSonarQubeEnv('sonarqube') {
                     sh """
                         sonar-scanner \
                         -Dsonar.projectKey=k8s-cicd-app \
