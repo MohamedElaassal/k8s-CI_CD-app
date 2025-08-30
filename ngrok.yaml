@@ -1,0 +1,11 @@
+# ngrok configuration file
+version: "2"
+authtoken: 31y3r95QmWbl7fMfxpg7vClJ422_33NjN2Pk3ARhR9kZVhT9m
+
+tunnels:
+  app1:
+    addr: 172.17.0.2:8080
+    proto: http
+  app2:
+    addr: 172.17.0.3:9000
+    proto: http
