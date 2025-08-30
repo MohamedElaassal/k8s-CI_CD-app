@@ -4,7 +4,7 @@ pipeline {
     environment {
         DOCKER_IMAGE = "mohamedelaassal/lzz_repo"
         KUBECONFIG_CREDENTIALS = credentials('kubeconfig')
-        SONARQUBE_TOKEN = credentials('sonarqube-token')
+        SONARQUBE_TOKEN = credentials('sonar1')
     }
     
     stages {
@@ -29,7 +29,7 @@ pipeline {
                         sonar-scanner \
                         -Dsonar.projectKey=k8s-cicd-app \
                         -Dsonar.sources=. \
-                        -Dsonar.host.url=http://<sonarqube-server-url> \
+                        -Dsonar.host.url=https://95d9558001ba.ngrok-free.app/ \
                         -Dsonar.login=${SONARQUBE_TOKEN}
                     """
                 }
