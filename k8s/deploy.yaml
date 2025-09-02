@@ -1,4 +1,4 @@
-apiVersion: v1/app
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: k8s-CI_CD-app
@@ -17,6 +17,6 @@ spec:
     spec:
       containers:
         - name: k8s-CI_CD-app
-          image: mohamedelaassal/k8s-CI_CD-app:latest
+          image: mohamedelaassal/lzz_repo:latest
           ports:
             - containerPort: 3000

@@ -1,10 +1,10 @@
-apiVersion: v1/app
+apiVersion: v1
 kind: Service
 metadata:
   name: k8s-CI_CD-service
 spec:
   selector:
-    app: k8s-cicd-app
+    app: k8s-CI_CD-app
   ports:
   - protocol: TCP
     port: 80
