@@ -3,13 +3,13 @@ pipeline {
     
     tools {
         nodejs 'NodeJs'
-        'hudson.plugins.sonar.SonarRunnerInstallation' 'Sonar'
+       // 'hudson.plugins.sonar.SonarRunnerInstallation' 'Sonar'
     }
     
     environment {
         DOCKER_IMAGE = "mohamedelaassal/lzz_repo"
         KUBECONFIG_CREDENTIALS = credentials('kubeconfig')
-        SONARQUBE_TOKEN = credentials('sonar1')
+       // SONARQUBE_TOKEN = credentials('sonar1')
     }
     
     stages {
@@ -59,7 +59,7 @@ pipeline {
             }
         }
         
-        
+
         stage('Deploy to Kubernetes') {
             steps {
                 script {
