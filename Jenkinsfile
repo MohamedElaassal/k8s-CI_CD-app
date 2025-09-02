@@ -22,8 +22,8 @@ pipeline {
         
         stage('Run Unit Tests') {
             steps {
-                sh 'npm install'
-                sh 'npm test'
+                bat 'npm install'
+                bat 'npm test'
             }
         }
         
@@ -64,8 +64,8 @@ pipeline {
             steps {
                 script {
                     withKubeConfig(credentialsId: 'kubeconfig') {
-                        sh 'kubectl apply -f k8s/deploy.yaml'
-                        sh 'kubectl apply -f k8s/service.yaml'
+                        bat 'kubectl apply -f k8s/deploy.yaml'
+                        bat 'kubectl apply -f k8s/service.yaml'
                     }
                 }
             }
