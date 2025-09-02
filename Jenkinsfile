@@ -16,7 +16,7 @@ pipeline {
         stage('Clone Repository') {
             steps {
                 git credentialsId: 'jen-git', url: 'https://github.com/MohamedElaassal/k8s-CI_CD-app.git'
-                //here you go to genererate a github token (settings -->Developer Settings --> Personal Access token)
+                //generate a github token (settings -->Developer Settings --> Personal Access token)
             }
         }
         
@@ -24,6 +24,7 @@ pipeline {
             steps {
                 bat 'npm install'
                 bat 'npm test'
+                //for linux use sh instead of bat
             }
         }
         
@@ -66,6 +67,7 @@ pipeline {
                     withCredentials([file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG')]) {
                         bat 'kubectl apply -f k8s/deploy.yaml'
                         bat 'kubectl apply -f k8s/service.yaml'
+                        //for linux use sh instead of bat
                     }
                 }
             }
